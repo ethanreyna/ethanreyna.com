@@ -1,0 +1,23 @@
+---
+import Row from "../layouts/Row.astro";
+import Badge from "./Badge.astro";
+import ClickableNoDecoration from "./ClickableNoDecoration.astro";
+
+---
+
+<div>
+    <Row gap="12px">
+        <ClickableNoDecoration href="/" target="_self">
+            <Badge hover>home</Badge>
+        </ClickableNoDecoration>
+        <ClickableNoDecoration href="/work" target="_self">
+            <Badge hover>work</Badge>
+        </ClickableNoDecoration>
+        <ClickableNoDecoration href="https://linkedin.com/in/ethan-reyna" target="_blank">
+            <Badge hover>linkedin</Badge>
+        </ClickableNoDecoration>
+        <ClickableNoDecoration href="/resume-v2-ethan-reyna.pdf" target="_blank">
+            <Badge hover>resume</Badge>
+        </ClickableNoDecoration>
+    </Row>
+</div>

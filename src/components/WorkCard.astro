@@ -1,0 +1,53 @@
+---
+interface Props {
+	company: string;
+	role: string;
+	body: string;
+	href?: string;
+}
+
+const { company, role, body } = Astro.props;
+---
+<div class="card">
+    <div class="row">
+		<span class="company">
+			{company}
+		</span>
+		<span class="role">
+			{role}
+		</span>
+    </div>
+    <span class="card-body">
+        {body}
+    </span>
+</div>
+<style>
+    .card {
+		list-style: none;
+		padding: 1.25rem;
+		background-color: #6D6D6D;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 7px;
+		background-position: 100%;
+        margin-top: 1rem;
+    }
+    .row {
+        display: flex;
+        align-items: baseline;
+    }
+	.company {
+		font-size: 1.75rem;
+        color: gainsboro;
+        font-weight:500;
+        padding-right: .75rem;
+	}
+	.role {
+		font-size: 1.25rem;
+        color: gainsboro;
+	}
+	.card-body {
+		font-size: 1rem;
+        color: gainsboro;
+	}
+</style>
