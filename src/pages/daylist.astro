@@ -11,7 +11,10 @@ import Layout from '../layouts/Layout.astro';
 			<header>
 				<Navbar/>
 			</header>
-			<h1>here's my current spotify daylist</h1>
+				<h1>here's my current spotify daylist</h1>
+				<div class="subheader">
+					(this does not have any reflection on my work skills nor my personality i promise)
+				</div>
                 <SpotifyNowPlayingBanner/>
             </main>
 </Layout>
@@ -30,7 +33,12 @@ import Layout from '../layouts/Layout.astro';
 		font-size: 2.5rem;
 		font-weight: 500;
 		line-height: 1;
-		margin-bottom: 1em;
 		margin-top: 1em;
+	}
+	.subheader {
+		font-size: 1.25rem;
+		font-weight: 100;
+		line-height: 1;
+		padding-bottom: 2rem;
 	}
 </style>
