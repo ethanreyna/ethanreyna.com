@@ -1,0 +1,36 @@
+---
+import Navbar from '../components/Navbar.astro';
+import SpotifyNowPlayingBanner from '../components/spotify/SpotifyNowPlayingBanner.astro';
+import ContentLayout from '../layouts/ContentLayout.astro';
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title="Spotify Daylist Compendium Page">
+		<main>
+			<header>
+				<Navbar/>
+			</header>
+			<h1>here's my current spotify daylist</h1>
+                <SpotifyNowPlayingBanner/>
+            </main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	h1 {
+		font-size: 2.5rem;
+		font-weight: 500;
+		line-height: 1;
+		margin-bottom: 1em;
+		margin-top: 1em;
+	}
+</style>
