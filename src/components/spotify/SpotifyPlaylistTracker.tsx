@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowRight  } from "react-icons/fa";
 
 type SpotifyTrack = {
-  name: string;
+  name?: string;
   image?: string;
   preview_url?: string;
   track_url?: string;
 }
 
 type SpotifyPlaylist = {
-  name: string;
+  name?: string;
   image?: string;
   track_link?: string;
   playlist_link?: string;
@@ -32,8 +32,8 @@ const formatPlaylistName = (name: string) => {
   return "No name found";
 };
 
-const getDaylist = async (): SpotifyPlaylist => {
-  let daylist = { name: "Error finding playlist" };
+const getDaylist = async (): Promise<SpotifyPlaylist> => {
+  let daylist = { name: "Error finding playlist" } as SpotifyPlaylist;
   try {
     const r = await fetch(
       "https://patient-unit-aece.ethanpreyna.workers.dev/playlists",
@@ -54,8 +54,8 @@ const getDaylist = async (): SpotifyPlaylist => {
   return daylist;
 }
 
-const getTracks = async (daylistTrackId: string): SpotifyTrack[] => {
-  let daylist = { name: "Error finding playlist" };
+const getTracks = async (daylistTrackId: string): Promise<SpotifyTrack[]> => {
+  let daylist = [{ name: "Unknown Track" }] as SpotifyTrack[];
   try {
     const r = await fetch(
       `https://patient-unit-aece.ethanpreyna.workers.dev/tracks/${daylistTrackId}`,
@@ -67,7 +67,7 @@ const getTracks = async (daylistTrackId: string): SpotifyTrack[] => {
     );
 
     if (r.ok) {
-      daylist = await r.json() as SpotifyTrack;
+      daylist = await r.json() as SpotifyTrack[];
     }
   } catch (error) {
     console.error("An error occurred:", error);
@@ -93,12 +93,14 @@ const SpotifyPlaylistTracker: React.FC= ({}) => {
       setFoundPlaylist(daylist);
 
       const trackLink = daylist.track_link;
-      const startIndex = trackLink.indexOf("playlists/") + "playlists/".length;
-      const endIndex = trackLink.indexOf("/tracks", startIndex);
-      const daylistTrackId = trackLink.substring(startIndex, endIndex);
+      if(trackLink){
+        const startIndex = trackLink.indexOf("playlists/") + "playlists/".length;
+        const endIndex = trackLink.indexOf("/tracks", startIndex);
+        const daylistTrackId = trackLink.substring(startIndex, endIndex);
+        const daylistTracks = await getTracks(daylistTrackId);
+        setTracks(daylistTracks);
+      }
       
-      const daylistTracks = await getTracks(daylistTrackId);
-      setTracks(daylistTracks);
     }
     get();
   }, []);
@@ -120,7 +122,7 @@ const SpotifyPlaylistTracker: React.FC= ({}) => {
               paddingLeft: "1rem"
             }}
             >
-            {foundPlaylist ? formatPlaylistName(foundPlaylist.name) : <>loading...</>}
+            {foundPlaylist.name ? formatPlaylistName(foundPlaylist.name) : <>loading...</>}
             </span>
             {tracks && (
                 <div
