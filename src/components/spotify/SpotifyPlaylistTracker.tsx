@@ -1,118 +1,18 @@
 import { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowRight  } from "react-icons/fa";
 
-
-
-const CORS_HEADERS = {
-  "Access-Control-Allow-Headers": "Authorization",
-  "Access-Control-Allow-Methods": "GET",
-  "Access-Control-Allow-Origin": "*",
-};
-
-async function getSpotifyAccessToken(): Promise<string>{
-  const cachedAccessToken = localStorage.getItem("access_token");
-  
-  //Used to check local storage to validate token values
-  //console.log("access token" + localStorage.getItem("access_token"), "refresh token"+localStorage.getItem("refresh_token"))
-  
-  if(cachedAccessToken){
-    if(!checkExpiredAccessToken()){
-      return cachedAccessToken;
-    }
-  }
-
-  const refresh_token = localStorage.getItem("refresh_token");
-
-  if (!refresh_token) {
-    throw new Error(`no refresh token for ethanpreyna`);
-  }
-
-  const authBody = new URLSearchParams({
-    grant_type: "refresh_token",
-    refresh_token,
-  });
-
-  const client_id = localStorage.getItem("client_id");
-  const client_secret = localStorage.getItem("client_secret");
-
-  const authHeader = btoa(
-    `${client_id}:${client_secret}`
-  );
-
-  const tokenResp = await fetch("https://accounts.spotify.com/api/token", {
-    body: authBody,
-    headers: {
-      Authorization: `Basic ${authHeader}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    method: "POST",
-  });
-
-  const accessToken = ((await tokenResp.json()) as any).access_token;
-
-  if(accessToken){
-    const currentTime = new Date().getTime();
-    localStorage.setItem("access_token", accessToken);
-    localStorage.setItem("access_token_timestamp", currentTime.toString());
-    console.log("Setting access token: ", accessToken);
-  }
-
-  return accessToken;
+type SpotifyTrack = {
+  name: string;
+  image?: string;
+  preview_url?: string;
+  track_url?: string;
 }
 
-function checkExpiredAccessToken(){
-  const storedTimestamp = localStorage.getItem("access_token_timestamp");
-  if (storedTimestamp) {
-    const currentTime = new Date().getTime();
-    const storedTime = parseInt(storedTimestamp, 10);
-
-    // Calculate the elapsed time in seconds
-    const elapsedTimeInSeconds = (currentTime - storedTime) / 1000;
-
-    if (elapsedTimeInSeconds >= 3500) {
-      // It's been 3500 seconds (or more) since the token was set
-      return true;
-    } else {
-      // Access token is still valid
-      return false;
-    }
-  } else {
-    // No stored timestamp found, handle accordingly
-    return true;
-  }
-}
-
-async function findPlaylistsByUser(userId: string, accessToken: string){
-  const daylistParameters = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + accessToken
-    }
-  }
-  const daylistResponse = await fetch(
-    `https://api.spotify.com/v1/users/${userId}/playlists`,
-    daylistParameters
-  );
-  const playlists = ((await daylistResponse.json()) as any);
-  
-  return playlists.items;
-}
-
-async function getPlaylistTracks(trackLink: string, accessToken: string){
-  const daylistParameters = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + accessToken
-    }
-  }
-  const daylistResponse = await fetch(
-    trackLink,
-    daylistParameters
-  );
-  const tracks = ((await daylistResponse.json()) as any);
-  return tracks;
+type SpotifyPlaylist = {
+  name: string;
+  image?: string;
+  track_link?: string;
+  playlist_link?: string;
 }
 
 const formatPlaylistName = (name: string) => {
@@ -132,146 +32,49 @@ const formatPlaylistName = (name: string) => {
   return "No name found";
 };
 
-type SpotifyTrack = {
-  name: string;
-  image?: string;
-  preview_url?: string;
-  track_url?: string;
-}
-
-type SpotifyPlaylist = {
-  name: string;
-  image?: string;
-  track_link?: string;
-  playlist_link?: string;
-}
-
-const getTrackData = (tracks:any):SpotifyTrack[] => {
-  const items = tracks.items;
-  const finalTracks:SpotifyTrack[] = [];
-  items.forEach((item: any) => {
-    const album: any = item.track.album;
-    console.log(item.track.external_urls.spotify)
-    const currentTrack: SpotifyTrack = {
-      name: album.name, 
-      image: album.images[0].url, 
-      preview_url: item.track.preview_url,
-      track_url: item.track.external_urls.spotify,
-    }
-    finalTracks.push(currentTrack);
-  })
-
-  return finalTracks;
-}
-
-function findDaylist(playlists: any){
-    const daylist = playlists.find((playlistItem: any) =>
-      playlistItem.name.toLowerCase().includes("daylist")
+const getDaylist = async (): SpotifyPlaylist => {
+  let daylist = { name: "Error finding playlist" };
+  try {
+    const r = await fetch(
+      "https://patient-unit-aece.ethanpreyna.workers.dev/playlists",
+      {
+        headers: {
+          Authorization: `Basic a0951e5b44c84430a910316a8a8754c6`,
+        },
+      }
     );
 
-    if(daylist){
-      const daylistFormatted: Playlist = {
-        name: daylist.name,
-        image: daylist.images[0].url,
-        track_link: daylist.tracks.href,
-        playlist_link: daylist.external_urls.spotify,
-      }
-      return daylistFormatted;
+    if (r.ok) {
+      daylist = await r.json() as SpotifyPlaylist;
     }
-
-    return daylist;
-}
-
-
-//Remove this when refresh token finalized
-function generateRandomString(length: number) {
-  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let randomString = '';
-
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * charset.length);
-    randomString += charset[randomIndex];
+  } catch (error) {
+    console.error("An error occurred:", error);
   }
 
-  return randomString;
+  return daylist;
 }
-async function authorize() {
-  const CLIENT_ID = "a1d2a47bf91342929478261ee1db804e";
-  const REDIRECT_URI = "http://localhost:4321/daylist";
-  const scope = 'user-read-private user-read-email playlist-read-private playlist-modify-private playlist-modify-public playlist-read-collaborative user-read-recently-played user-top-read user-read-playback-position user-read-currently-playing user-read-playback-state';
-  const state = generateRandomString(16);
 
-  const spotifyAuthorizeURL = `https://accounts.spotify.com/authorize?` +
-    `response_type=code` +
-    `&client_id=${CLIENT_ID}` +
-    `&scope=${encodeURIComponent(scope)}` +
-    `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
-    `&state=${state}`;
+const getTracks = async (daylistTrackId: string): SpotifyTrack[] => {
+  let daylist = { name: "Error finding playlist" };
+  try {
+    const r = await fetch(
+      `https://patient-unit-aece.ethanpreyna.workers.dev/tracks/${daylistTrackId}`,
+      {
+        headers: {
+          Authorization: `Basic a0951e5b44c84430a910316a8a8754c6`,
+        },
+      }
+    );
 
-  window.location.href = spotifyAuthorizeURL;
-}
-function getCode() {
-  const queryString = window.location.search;
-  if (queryString.length > 0) {
-    const urlParams = new URLSearchParams(queryString);
-    const code = urlParams.get('code');
-
-    if (code !== null) {
-      return code;
+    if (r.ok) {
+      daylist = await r.json() as SpotifyTrack;
     }
+  } catch (error) {
+    console.error("An error occurred:", error);
   }
 
-  return "error"; 
+  return daylist;
 }
-function handleRedirect(){
-  let code = getCode();
-  const response = fetchAccessToken( code );
-  const REDIRECT_URI = "http://localhost:4321/daylist";
-  window.history.pushState("", "", REDIRECT_URI); // remove param from url
-  return response;
-}
-async function fetchAccessToken(code: string){
-  const CLIENT_ID = "a1d2a47bf91342929478261ee1db804e";
-  const CLIENT_SECRET = "a0951e5b44c84430a910316a8a8754c6"
-  const REDIRECT_URI = "http://localhost:4321/daylist";
-  const authParameters = {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      'Authorization': 'Basic ' + btoa(
-        `${CLIENT_ID}:${CLIENT_SECRET}`
-      )
-    },
-    body: 'grant_type=authorization_code'+
-    '&code=' + code +
-    '&client_id=' + CLIENT_ID + 
-    '&client_secret=' + CLIENT_SECRET +
-    `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`
-  };
-
-  const tokenResponse = await fetch(
-    'https://accounts.spotify.com/api/token', authParameters);
-  const accessTokenJson = ((await tokenResponse.json()) as any);
-
-  return accessTokenJson;
-}
-
-function handleAuthorizationResponse(response: { accessToken: any; access_token: string | undefined; refresh_token: string | undefined; }){
-  if (response.access_token){
-    localStorage.setItem("client_id", "a1d2a47bf91342929478261ee1db804e");
-    localStorage.setItem("client_secret", "a0951e5b44c84430a910316a8a8754c6");
-      if ( response.access_token != undefined ){
-          localStorage.setItem("access_token", response.access_token);
-      }
-      if ( response.refresh_token != undefined ){
-          localStorage.setItem("refresh_token", response.refresh_token);
-      }
-  }
-  else {
-      console.log(response);
-  }
-}
-
 
 const SpotifyPlaylistTracker: React.FC= ({}) => {
   const [playlists, setPlaylists] = useState([]);
@@ -280,56 +83,25 @@ const SpotifyPlaylistTracker: React.FC= ({}) => {
   const [accessToken, setAccessToken] = useState("");
   const [expanded, setExpanded] = useState(false);
 
-  useEffect(() => {
-    handleSync();
-  }, []);
-
-  useEffect(() => {
-    if(playlists){
-      setFoundPlaylist(findDaylist(playlists))
-
-    }
-  }, [playlists]);
-
-  useEffect(() => {
-    if(foundPlaylist){
-      handleGetTracks();
-    }
-  }, [foundPlaylist]);
-  
-
-  const handleSync = async () => {
-    try {
-      const thisAccessToken = await getSpotifyAccessToken();
-      setAccessToken(thisAccessToken);
-      const playlistResults = await findPlaylistsByUser('ethanpreyna',thisAccessToken);
-      setPlaylists(playlistResults)
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const handleGetTracks = async() => {
-    if(foundPlaylist){
-      const tracksResults = await getPlaylistTracks(foundPlaylist.track_link, accessToken);
-      setTracks(getTrackData(tracksResults));
-    }
-  }
-
   const handleExpand = () => {
     setExpanded(!expanded);
   }
 
-  
-  // This is used when I need to update the access token scope
-  // const handleAuthorize = () => {
-  //   authorize();
-  // }
-  // const handleNewSync = async() => {
-  //   const response = await handleRedirect();
-  //   handleAuthorizationResponse(response);
-  //   console.log(localStorage.getItem("refresh_token"))
-  // }
+  useEffect(() => {
+    async function get() {
+      const daylist = await getDaylist();
+      setFoundPlaylist(daylist);
+
+      const trackLink = daylist.track_link;
+      const startIndex = trackLink.indexOf("playlists/") + "playlists/".length;
+      const endIndex = trackLink.indexOf("/tracks", startIndex);
+      const daylistTrackId = trackLink.substring(startIndex, endIndex);
+      
+      const daylistTracks = await getTracks(daylistTrackId);
+      setTracks(daylistTracks);
+    }
+    get();
+  }, []);
 
 
   return (
