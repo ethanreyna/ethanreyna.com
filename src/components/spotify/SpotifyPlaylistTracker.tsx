@@ -11,6 +11,8 @@ const CORS_HEADERS = {
 
 async function getSpotifyAccessToken(): Promise<string>{
   const cachedAccessToken = localStorage.getItem("access_token");
+  
+  //Used to check local storage to validate token values
   //console.log("access token" + localStorage.getItem("access_token"), "refresh token"+localStorage.getItem("refresh_token"))
   
   if(cachedAccessToken){
