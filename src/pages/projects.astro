@@ -1,0 +1,68 @@
+---
+import Navbar from '../components/Navbar.astro';
+import ProjectCard from '../components/projects/ProjectCard.astro';
+import Layout from '../layouts/Layout.astro';
+
+type Image = {
+	smallUrl: string;
+	largeUrl: string;
+	alt?: string;
+}
+
+const ProjectOneImages:Image[] = [{
+	smallUrl: '/start-report-page-1-small.png',
+	largeUrl: '/start-report-page-1.png',
+	alt: 'Start Report Page',
+},
+{
+	smallUrl: '/create-report-page-1-small.png',
+	largeUrl: '/create-report-page-1.png',
+	alt: 'Start Report Page',
+}
+]
+
+---
+
+<Layout title="Ethan's Projects">
+		<main>
+			<header>
+				<Navbar/>
+			</header>
+			<h1>here's some of my projects</h1>
+            <ProjectCard 
+				project_name="Report Generator" 
+				company="Trava" 
+				description="Generated reports from vulnerability data."
+				images={ProjectOneImages}
+			/>
+            <ProjectCard 
+				project_name="Client Import via CSV" 
+				company="Trava" 
+				description="Imported clients using data from a csv file."
+				/>
+            <ProjectCard 
+				project_name="Spotify Current Daylist" 
+				company="Personal" 
+				description="Displays my current Spotify daylist along with all the tracks present in the list."
+			/>
+            </main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	h1 {
+		font-size: 2.5rem;
+		font-weight: 500;
+		line-height: 1;
+		margin-bottom: 1em;
+		margin-top: 1em;
+	}
+</style>

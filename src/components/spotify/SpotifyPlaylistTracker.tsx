@@ -15,6 +15,9 @@ type SpotifyPlaylist = {
   playlist_link?: string;
 }
 
+//const currentWorkerUrl = "http://127.0.0.1:8787";
+const currentWorkerUrl = "https://patient-unit-aece.ethanpreyna.workers.dev";
+
 const formatPlaylistName = (name: string) => {
   if (name) {
     // Remove unwanted characters (e.g., "daylist")
@@ -36,7 +39,7 @@ const getDaylist = async (): Promise<SpotifyPlaylist> => {
   let daylist = { name: "Error finding playlist" } as SpotifyPlaylist;
   try {
     const r = await fetch(
-      "https://patient-unit-aece.ethanpreyna.workers.dev/playlists",
+      currentWorkerUrl + "/playlists",
       {
         headers: {
           Authorization: `Basic a0951e5b44c84430a910316a8a8754c6`,
@@ -58,7 +61,7 @@ const getTracks = async (daylistTrackId: string): Promise<SpotifyTrack[]> => {
   let daylist = [{ name: "Unknown Track" }] as SpotifyTrack[];
   try {
     const r = await fetch(
-      `https://patient-unit-aece.ethanpreyna.workers.dev/tracks/${daylistTrackId}`,
+      currentWorkerUrl + '/tracks/' + daylistTrackId,
       {
         headers: {
           Authorization: `Basic a0951e5b44c84430a910316a8a8754c6`,
@@ -76,11 +79,29 @@ const getTracks = async (daylistTrackId: string): Promise<SpotifyTrack[]> => {
   return daylist;
 }
 
-const SpotifyPlaylistTracker: React.FC= ({}) => {
+const getCurrentTimeSection = () => {
+  const date = new Date();
+  const currentHour = date.getHours();
+  
+  let currentTimeSection = 1;
+  if (currentHour >= 4) currentTimeSection = 2;
+  if (currentHour >= 8) currentTimeSection = 3;
+  if (currentHour >= 12) currentTimeSection = 4;
+  if (currentHour >= 16) currentTimeSection = 5;
+  if (currentHour >= 20) currentTimeSection = 6;
+  
+  const currentDate = new Date();
+  const secondsPerDay = 24 * 60 * 60; 
+  
+  const currentDayVal = Math.floor(+currentDate / secondsPerDay);
+  
+  return `${currentDayVal}${currentTimeSection}`;
+}
+
+const SpotifyPlaylistTracker: React.FC= () => {
   const [playlists, setPlaylists] = useState([]);
   const [tracks, setTracks] = useState<SpotifyTrack[]>([]);
   const [foundPlaylist, setFoundPlaylist] = useState<SpotifyPlaylist>();
-  const [accessToken, setAccessToken] = useState("");
   const [expanded, setExpanded] = useState(false);
 
   const handleExpand = () => {
@@ -106,6 +127,7 @@ const SpotifyPlaylistTracker: React.FC= ({}) => {
   }, []);
 
 
+
   return (
     <>
       {foundPlaylist ? (
@@ -115,7 +137,7 @@ const SpotifyPlaylistTracker: React.FC= ({}) => {
           <img src={foundPlaylist.image} height={"100rem"} style={{ borderRadius: "10px" }} />
             <span
             style={{
-              color: "#28323E",
+              color: "gainsboro",
               fontSize: "1.7rem",
               fontWeight: 500,
               transition: "all .25s ease-out",
@@ -133,9 +155,9 @@ const SpotifyPlaylistTracker: React.FC= ({}) => {
                 onClick={() => handleExpand()}
               >
                   {expanded ? (
-                    <FaArrowDown size={34} color="#28323E"/> 
+                    <FaArrowDown size={34} color="gainsboro"/> 
                   ) : (
-                    <FaArrowRight size={34} color="#28323E"/> 
+                    <FaArrowRight size={34} color="gainsboro"/> 
                   )}
                   </div>
             )}
@@ -161,7 +183,7 @@ const SpotifyPlaylistTracker: React.FC= ({}) => {
                   >
                     <span style ={{
                       paddingLeft: '1rem',
-                      color: "#28323E",
+                      color: "gainsboro",
                       fontWeight: 400,
                     }}>
                       {track.name}

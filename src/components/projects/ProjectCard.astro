@@ -1,0 +1,41 @@
+---
+import ProjectContent from './ProjectContent';
+
+type Image = {
+	smallUrl: string;
+	largeUrl: string;
+	alt?: string;
+}
+
+interface Props {
+	project_name: string;
+	company?: string;
+	description?: string;
+    images?:Image[];
+}
+
+const { project_name, company, description, images } = Astro.props;
+
+---
+
+<div class="card">
+    <ProjectContent 
+		project_name={project_name} 
+		company={company} 
+		description={description} 
+		images={images}
+		client:load
+		/>
+</div>
+<style>
+    .card {
+		list-style: none;
+		padding: 1.25rem;
+		background-color: #28323E;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 1rem;
+		background-position: 100%;
+        margin-top: 1rem;
+    }
+</style>
