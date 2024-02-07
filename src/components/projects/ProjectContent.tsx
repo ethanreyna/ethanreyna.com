@@ -7,7 +7,6 @@ import ModalImage from "react-modal-image";
 type Image = {
 	smallUrl: string;
 	largeUrl: string;
-	alt?: string;
 }
 
 interface Props {
@@ -59,7 +58,7 @@ const ProjectContent: React.FC<Props> = ({ project_name, company, description, i
         {expanded && (
             <>
                 {images && images.map((image, index) => (
-                    <ModalImage small={image.smallUrl} large={image.largeUrl} alt={images.alt}/>
+                    <ModalImage small={image.smallUrl} large={image.largeUrl}/>
                 ))
                 }
             </>
