@@ -1,9 +1,12 @@
 ---
 import Navbar from '../components/Navbar.astro';
+import GradientLayout from '../layouts/GradientLayout.astro';
 import Layout from '../layouts/Layout.astro';
+import ImageCard from '../components/images/ImageCard.astro'
 ---
 
 <Layout title="Ethan Reyna">
+	<GradientLayout>
 		<main>
 			<header>
 				<Navbar/>
@@ -21,9 +24,10 @@ import Layout from '../layouts/Layout.astro';
 				</span>
 			</div>
 			<div class="section">
-				<img src="/ethan_reyna_pic1.png" height='200rem' width="175rem"/>
+				<ImageCard imageUrl="/ethan_reyna_pic1.png" height="200rem" width="175rem"/>
 			</div>
 		</main>
+	</GradientLayout>
 </Layout>
 
 <style>
@@ -32,7 +36,7 @@ import Layout from '../layouts/Layout.astro';
 		padding: 1rem;
 		width: 800px;
 		max-width: calc(100% - 2rem);
-		color: white;
+		color: #28323E;
 		font-size: 20px;
 		line-height: 1.6;
 	}

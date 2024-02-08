@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import ProjectCard from '../components/projects/ProjectCard.astro';
+import GradientLayout from '../layouts/GradientLayout.astro';
 import Layout from '../layouts/Layout.astro';
 
 type Image = {
@@ -21,11 +22,15 @@ const ProjectOneImages:Image[] = [{
 ---
 
 <Layout title="Ethan's Projects">
+	<GradientLayout>
 		<main>
 			<header>
 				<Navbar/>
 			</header>
 			<h1>here's some of my projects</h1>
+			<div class="subheader">
+				(under construction)
+			</div>
             <ProjectCard 
 				project_name="Report Generator" 
 				company="Trava" 
@@ -42,7 +47,8 @@ const ProjectOneImages:Image[] = [{
 				company="Personal" 
 				description="Displays my current Spotify daylist along with all the tracks present in the list."
 			/>
-            </main>
+		</main>
+	</GradientLayout>
 </Layout>
 
 <style>
@@ -51,7 +57,7 @@ const ProjectOneImages:Image[] = [{
 		padding: 1rem;
 		width: 800px;
 		max-width: calc(100% - 2rem);
-		color: white;
+		color: #28323E;
 		font-size: 20px;
 		line-height: 1.6;
 	}
@@ -61,5 +67,11 @@ const ProjectOneImages:Image[] = [{
 		line-height: 1;
 		margin-bottom: 1em;
 		margin-top: 1em;
+	}
+	.subheader {
+		font-size: 1.25rem;
+		font-weight: 100;
+		line-height: 1;
+		padding-bottom: 2rem;
 	}
 </style>

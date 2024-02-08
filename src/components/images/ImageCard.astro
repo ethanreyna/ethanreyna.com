@@ -1,0 +1,32 @@
+---
+interface Props {
+	imageUrl: string;
+    height?: string;
+    width?: string;
+}
+
+const { imageUrl, height, width } = Astro.props;
+
+const thisHeight = height || '100rem';
+const thisWidth = width || '100rem';
+
+---
+<>
+    <img class= "card"  src={imageUrl} height={thisHeight} width={thisWidth}/>
+</>
+<style>
+    .card {
+		list-style: none;
+		padding: 1rem;
+		background-color: #28323E;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 1rem;
+		background-position: 100%;
+        margin-top: 1rem;
+    }
+    .card:hover {
+        transform: scale(1.05); /* Increase scale on hover */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+    }
+</style>

@@ -15,8 +15,8 @@ type SpotifyPlaylist = {
   playlist_link?: string;
 }
 
-//const currentWorkerUrl = "http://127.0.0.1:8787";
-const currentWorkerUrl = "https://patient-unit-aece.ethanpreyna.workers.dev";
+const currentWorkerUrl = "http://127.0.0.1:8787";
+//const currentWorkerUrl = "https://patient-unit-aece.ethanpreyna.workers.dev";
 
 const formatPlaylistName = (name: string) => {
   if (name) {

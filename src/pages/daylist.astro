@@ -1,11 +1,13 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import SpotifyDaylistBanner from '../components/spotify/SpotifyDaylistBanner.astro';
+import GradientLayout from '../layouts/GradientLayout.astro';
 import Layout from '../layouts/Layout.astro';
 
 ---
 
 <Layout title="My Current Spotify Daylist">
+	<GradientLayout>
 		<main>
 			<header>
 				<Navbar/>
@@ -15,7 +17,8 @@ import Layout from '../layouts/Layout.astro';
 					(this playlist does not have any reflection on my work skills nor my personality i promise)
 				</div>
                 <SpotifyDaylistBanner/>
-            </main>
+		</main>
+	</GradientLayout>
 </Layout>
 
 <style>
@@ -24,7 +27,7 @@ import Layout from '../layouts/Layout.astro';
 		padding: 1rem;
 		width: 800px;
 		max-width: calc(100% - 2rem);
-		color: white;
+		color: #28323E;
 		font-size: 20px;
 		line-height: 1.6;
 	}
