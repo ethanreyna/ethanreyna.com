@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaArrowDown, FaArrowRight } from "react-icons/fa";
 import DownArrowButton from "./DownArrowButton";
-import ModalImage from "react-modal-image";
+//import ModalImage from "react-modal-image";
 
 
 type Image = {
@@ -58,7 +58,7 @@ const ProjectContent: React.FC<Props> = ({ project_name, company, description, i
         {expanded && (
             <>
                 {images && images.map((image, index) => (
-                    <ModalImage small={image.smallUrl} large={image.largeUrl}/>
+                    //<ModalImage small={image.smallUrl} large={image.largeUrl}/>
                 ))
                 }
             </>
