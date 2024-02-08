@@ -58,7 +58,7 @@ const ProjectContent: React.FC<Props> = ({ project_name, company, description, i
         {expanded && (
             <>
                 {images && images.map((image, index) => (
-                    //<ModalImage small={image.smallUrl} large={image.largeUrl}/>
+                    <img src={image.largeUrl} height='200rem'/>
                 ))
                 }
             </>
