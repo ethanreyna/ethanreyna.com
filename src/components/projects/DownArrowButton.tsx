@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { FaArrowDown, FaArrowRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 interface Props {
     expanded: boolean;
@@ -11,16 +10,15 @@ const DownArrowButton: React.FC<Props> = ({expanded, handleExpand}) => {
         <div
         style={{
             cursor: "pointer",
-            marginLeft: "auto"
+            marginLeft: "auto",
+            transition: "transform 0.3s ease-in-out"
         }}
         onClick={() => handleExpand()}
-        >
-            {expanded ? (
-            <FaArrowDown size={34} color="gainsboro"/> 
-            ) : (
-            <FaArrowRight size={34} color="gainsboro"/> 
-            )}
+    >
+        <div style={{ transform: expanded ? "rotate(90deg)" : "rotate(0deg)"  }}> 
+                <FaArrowRight size={34} color="gainsboro" />
         </div>
+    </div>
     )
 }
 

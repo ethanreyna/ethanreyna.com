@@ -27,25 +27,29 @@ const ProjectOneImages:Image[] = [{
 			<header>
 				<Navbar/>
 			</header>
-			<h1>here's some of my projects</h1>
+			<h1>here's some of my past projects</h1>
 			<div class="subheader">
-				(under construction)
+				hit that little arrow button to expand each project section to learn more about it!
 			</div>
             <ProjectCard 
 				project_name="Report Generator" 
 				company="Trava" 
-				description="Generated reports from vulnerability data."
+				description="Generates reports from vulnerability data."
 				images={ProjectOneImages}
+				sections={[
+					{ name: "Section 1", description: "Description of Section 1" },
+					{ name: "Section 2", description: "Description of Section 2", list_description: ["list item 1", "list item 2"] }
+				]}
 			/>
             <ProjectCard 
 				project_name="Client Import via CSV" 
 				company="Trava" 
-				description="Imported clients using data from a csv file."
+				description="Imports clients using data from a csv file."
 				/>
             <ProjectCard 
 				project_name="Spotify Current Daylist" 
 				company="Personal" 
-				description="Displays my current Spotify daylist along with all the tracks present in the list."
+				description="Displays my current Spotify daylist."
 			/>
 		</main>
 	</GradientLayout>

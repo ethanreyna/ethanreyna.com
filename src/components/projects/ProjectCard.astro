@@ -7,14 +7,7 @@ type Image = {
 	alt?: string;
 }
 
-interface Props {
-	project_name: string;
-	company?: string;
-	description?: string;
-    images?:Image[];
-}
-
-const { project_name, company, description, images } = Astro.props;
+const { project_name, company, description, images, sections } = Astro.props;
 
 ---
 
@@ -24,6 +17,7 @@ const { project_name, company, description, images } = Astro.props;
 		company={company} 
 		description={description} 
 		images={images}
+		sections={sections}
 		client:load
 		/>
 </div>
