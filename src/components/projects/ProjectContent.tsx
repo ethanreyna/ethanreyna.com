@@ -114,7 +114,7 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
                         </div>
                         <div>
                             <span style={{ color: "gainsboro", fontSize: "1rem" }}>
-                                {section?.description}
+                                &emsp;{section?.description}
                             </span>
                             <ul style={{ margin: 0}}>
                                 {section.list_description && section.list_description.map((item, index) => (
