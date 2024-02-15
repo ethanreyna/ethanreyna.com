@@ -11,7 +11,7 @@ const { project_name, company, description, images, sections } = Astro.props;
 
 ---
 
-<div class="card">
+<div>
     <ProjectContent 
 		project_name={project_name} 
 		company={company} 
@@ -21,15 +21,3 @@ const { project_name, company, description, images, sections } = Astro.props;
 		client:load
 		/>
 </div>
-<style>
-    .card {
-		list-style: none;
-		padding: 1.25rem;
-		background-color: #28323E;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 1rem;
-		background-position: 100%;
-        margin-top: 1rem;
-    }
-</style>

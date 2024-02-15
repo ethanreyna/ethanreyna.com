@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowRight  } from "react-icons/fa";
+import DownArrowButton from "../projects/DownArrowButton";
+import { motion } from "framer-motion";
 
 type SpotifyTrack = {
   name?: string;
@@ -129,9 +131,19 @@ const SpotifyPlaylistTracker: React.FC= () => {
 
 
   return (
-    <>
+    <motion.div 
+        transition={{ duration: 0.5, type: 'spring' }} 
+        layout 
+        style={{
+            backgroundColor: '#28323E',
+            backgroundSize: '400%',
+            borderRadius: '1rem',
+            padding: '1.25rem',
+            marginTop: '1rem',
+        }}
+        >
       {foundPlaylist ? (
-        <>
+        <motion.div layout="position">
         <div style={{ display: "flex", alignItems: "center"}}>
 
           <img src={foundPlaylist.image} height={"100rem"} style={{ borderRadius: "10px" }} />
@@ -147,24 +159,16 @@ const SpotifyPlaylistTracker: React.FC= () => {
             {foundPlaylist.name ? formatPlaylistName(foundPlaylist.name) : <>loading...</>}
             </span>
             {tracks && (
-                <div
-                style={{
-                  cursor: "pointer",
-                  marginLeft: "auto"
-                }}
-                onClick={() => handleExpand()}
-              >
-                  {expanded ? (
-                    <FaArrowDown size={34} color="gainsboro"/> 
-                  ) : (
-                    <FaArrowRight size={34} color="gainsboro"/> 
-                  )}
-                  </div>
+              <DownArrowButton expanded={expanded} handleExpand={handleExpand}/>
             )}
         </div>
         <div style={{ display: "flex", maxHeight: '30rem', overflow: 'auto'}}>
           {expanded && (
-            <div >
+            <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            >
               {tracks.map((track: SpotifyTrack, index: number) => (
                 <div style={{ display: "flex", alignItems: "center", paddingTop: '1rem'}}>
                   <a
@@ -191,10 +195,10 @@ const SpotifyPlaylistTracker: React.FC= () => {
                   </a>
                 </div>
               ))}
-            </div>
+            </motion.div>
           )}
         </div>
-      </>
+      </motion.div>
       ) : (
         <>
         <div style={{ display: "flex", alignItems: "center"}}>
@@ -213,7 +217,7 @@ const SpotifyPlaylistTracker: React.FC= () => {
         </div>
       </>
       )}
-    </>
+    </motion.div>
   );
 }
 

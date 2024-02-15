@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 
 interface Props {
@@ -8,17 +9,21 @@ interface Props {
 const DownArrowButton: React.FC<Props> = ({expanded, handleExpand}) => {
     return (
         <div
-        style={{
-            cursor: "pointer",
-            marginLeft: "auto",
-            transition: "transform 0.3s ease-in-out"
-        }}
-        onClick={() => handleExpand()}
-    >
-        <div style={{ transform: expanded ? "rotate(90deg)" : "rotate(0deg)"  }}> 
-                <FaArrowRight size={34} color="gainsboro" />
+            style={{
+                cursor: "pointer",
+                marginLeft: "auto",
+                transition: "transform 0.3s ease-in-out"
+            }}
+            onClick={() => handleExpand()}
+        >
+            <motion.div 
+                initial={{ rotate: 0 }}
+                animate={{ rotate: expanded ? 90 : 0 }}
+                transition={{ duration: 0.25 }}
+            >
+                <FaArrowRight size={34} color="gainsboro" style={{ transform: 'rotate(var(--rotate))' }} />
+            </motion.div>
         </div>
-    </div>
     )
 }
 

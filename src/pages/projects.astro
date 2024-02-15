@@ -37,7 +37,22 @@ const ProjectOneImages:Image[] = [{
 				description="Generates reports from vulnerability data."
 				images={ProjectOneImages}
 				sections={[
-					{ name: "Overview", description: "This report generator is a feature I worked on during my time at Trava. It allowed tenants to select different assessments they ran previously (assessments collected vulnerability data by running different scans on assets they chose) and applied it onto a DOCX template that they also selected. During my time there, in the production environment, over 8000 reports were generated using this process. The generator was a vital piece of our product, as many tenants could easily use it to get Carrier Reports, which they could send to their providers and get potentially cheaper rates on their security insurance." },
+					{ 
+						name: "Overview", 
+						description: "This report generator is a project I worked on during my time at Trava. It allowed tenants to select different assessments they had run previously (assessments collected vulnerability data by running different scans on assets they chose) and applied them to a DOCX template that they also selected. During my time there, in the production environment, over 8000 reports were generated using this process. The generator was a vital piece of our product, as many tenants could easily use it to get Carrier Reports, which they could send to their providers and potentially get cheaper rates on their security insurance." 
+					},
+					{ 
+						name: "Report Types", 
+						description: "This system categorized reports into various \"Report Types\" stored in a Firebase collection. Each report type encompassed essential parameters for generating reports, including necessary inputs, labels, unique settings, and a link to the base docx template onto which the report would be generated. Throughout the \"Start Report\" process, this report type was transmitted to ensure that all requisite data was collected from the user." 
+					},
+					{ 
+						name: "Start Report Process", 
+						description: "The Start Report Process commenced after a report type had been chosen. Users proceeded by selecting required components for the report: a client, their assessments, surveys, or phishing campaigns. Upon selecting the necessary data, users could then opt for any additional settings before sending the report for generation." 
+					},
+					{ 
+						name: "Start Report Process", 
+						description: "Once a report was submitted, the web app would send a request to the API with the report data in the body. The API then double-checked that all requirements for the report type were met and would subsequently send a request to our Report Generator service with that data. \nThe report generator would receive this call, retrieve the specified template from a GCS bucket, and also fetch all assessment/survey/phishing campaign data attached to the IDs sent from the initial report request. This data would be retrieved by calling each respective route with their IDs, and the API would obtain that data to fill out the template. Once the report was generated, the DOCX file was saved, and a PDF copy would be created. Subsequently, a separate unique GCS bucket would be generated, and these files would be stored there.\nFinally, a report would be created and stored in a \"Reports\" collection in our database, with its status updated to Complete. At this point, a user would see it appear in their Reports section of the web app, and they would be able to download the DOCX or PDF file at their leisure." 
+					},
 					]}
 			/>
             <ProjectCard 
