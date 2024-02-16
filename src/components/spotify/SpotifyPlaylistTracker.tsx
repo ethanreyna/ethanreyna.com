@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowRight  } from "react-icons/fa";
 import DownArrowButton from "../projects/DownArrowButton";
 import { motion } from "framer-motion";
+import Scrollbar from "react-scrollbars-custom";
 
 type SpotifyTrack = {
   name?: string;
@@ -143,32 +144,34 @@ const SpotifyPlaylistTracker: React.FC= () => {
         }}
         >
       {foundPlaylist ? (
+        <>
         <motion.div layout="position">
-        <div style={{ display: "flex", alignItems: "center"}}>
+          <div style={{ display: "flex", alignItems: "center"}}>
 
-          <img src={foundPlaylist.image} height={"100rem"} style={{ borderRadius: "10px" }} />
-            <span
-            style={{
-              color: "gainsboro",
-              fontSize: "1.7rem",
-              fontWeight: 500,
-              transition: "all .25s ease-out",
-              paddingLeft: "1rem"
-            }}
-            >
-            {foundPlaylist.name ? formatPlaylistName(foundPlaylist.name) : <>loading...</>}
-            </span>
-            {tracks && (
-              <DownArrowButton expanded={expanded} handleExpand={handleExpand}/>
-            )}
-        </div>
-        <div style={{ display: "flex", maxHeight: '30rem', overflow: 'auto'}}>
+            <img src={foundPlaylist.image} height={"100rem"} style={{ borderRadius: "10px" }} />
+              <span
+              style={{
+                color: "gainsboro",
+                fontSize: "1.7rem",
+                fontWeight: 500,
+                transition: "all .25s ease-out",
+                paddingLeft: "1rem"
+              }}
+              >
+              {foundPlaylist.name ? formatPlaylistName(foundPlaylist.name) : <>loading...</>}
+              </span>
+              {tracks && (
+                <DownArrowButton expanded={expanded} handleExpand={handleExpand}/>
+              )}
+          </div>
+        </motion.div>
           {expanded && (
             <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
             >
+            <Scrollbar style={{height: '25rem'}}>
               {tracks.map((track: SpotifyTrack, index: number) => (
                 <div style={{ display: "flex", alignItems: "center", paddingTop: '1rem'}}>
                   <a
@@ -195,10 +198,10 @@ const SpotifyPlaylistTracker: React.FC= () => {
                   </a>
                 </div>
               ))}
+              </Scrollbar>
             </motion.div>
           )}
-        </div>
-      </motion.div>
+        </>
       ) : (
         <>
         <div style={{ display: "flex", alignItems: "center"}}>

@@ -3,6 +3,7 @@ import DownArrowButton from "./DownArrowButton";
 import type { ProjectProps } from "../types/ProjectTypes";
 import { Modal, ModalContent } from "../images/Modal";
 import { motion } from "framer-motion";
+import { Scrollbar } from "react-scrollbars-custom";
 
 const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, description, images, sections }) => {
     const [expanded, setExpanded] = useState(false);
@@ -33,6 +34,7 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
             borderRadius: '1rem',
             padding: '1.25rem',
             marginTop: '1rem',
+            maxHeight: '30rem',
         }}
         >
         <motion.div layout="position">
@@ -58,6 +60,7 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
             <span style={{
                         color: "gainsboro",
                         fontSize: "1rem",
+                        paddingBottom: '1rem'
                     }}>
                 {description}
             </span>
@@ -68,6 +71,7 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
             >
+            <Scrollbar style={{height: '25rem' }}>
                 {images && (
                 <>
                     {images && (
@@ -157,6 +161,7 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
                         </div>
                     </>
                 )}
+                </Scrollbar>
             </motion.div>
         )}
         </motion.div>
