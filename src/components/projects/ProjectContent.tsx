@@ -109,7 +109,7 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
                                             <span style={{
                                                 color: "gainsboro"
                                             }}>
-                                                {index}
+                                                {index + 1}
                                             </span>
                                         </div>
                                     </div>

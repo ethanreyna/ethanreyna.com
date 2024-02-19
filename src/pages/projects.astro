@@ -10,13 +10,47 @@ type Image = {
 }
 
 const ProjectOneImages:Image[] = [{
-	smallUrl: '/start-report-page-1-small.png',
-	largeUrl: '/start-report-page-1.png',
+	smallUrl: '/screenshot-report-generator-1.png',
+	largeUrl: '/screenshot-report-generator-1.png',
 },
 {
-	smallUrl: '/create-report-page-1-small.png',
-	largeUrl: '/create-report-page-1.png',
+	smallUrl: '/screenshot-report-generator-2.png',
+	largeUrl: '/screenshot-report-generator-2.png',
+},
+{
+	smallUrl: '/screenshot-report-generator-3.png',
+	largeUrl: '/screenshot-report-generator-3.png',
+},
+{
+	smallUrl: '/screenshot-report-generator-4.png',
+	largeUrl: '/screenshot-report-generator-4.png',
 }
+]
+
+const ProjectTwoImages:Image[] = [{
+	smallUrl: '/screenshot-import-clients-1.png',
+	largeUrl: '/screenshot-import-clients-1.png',
+},
+{
+	smallUrl: '/screenshot-import-clients-2.png',
+	largeUrl: '/screenshot-import-clients-2.png',
+},
+{
+	smallUrl: '/screenshot-import-clients-3.png',
+	largeUrl: '/screenshot-import-clients-3.png',
+},
+{
+	smallUrl: '/screenshot-import-clients-4.png',
+	largeUrl: '/screenshot-import-clients-4.png',
+},
+{
+	smallUrl: '/screenshot-import-clients-5.png',
+	largeUrl: '/screenshot-import-clients-5.png',
+},
+{
+	smallUrl: '/screenshot-import-clients-6.png',
+	largeUrl: '/screenshot-import-clients-6.png',
+},
 ]
 
 ---
@@ -59,6 +93,21 @@ const ProjectOneImages:Image[] = [{
 				project_name="Client Import via CSV" 
 				company="Trava" 
 				description="Imports clients using data from a csv file."
+				images={ProjectTwoImages}
+				sections={[
+					{ 
+						name: "Overview", 
+						description: "The Client Import via CSV feature allowed tenants to upload a CSV file so they could quickly add new clients or update existing ones. They would download a template that listed names, emails, and domain info, and then fill it out with their clients' information. Once this was done, they would need to navigate to that section of our app, upload the file, and fix any errors, such as potentially incorrect formatting or missing required fields. This action would then send a request to our API to create all of these new tenants, check that they didn't already exist, and if they did, update that client's information."
+					},
+					{ 
+						name: "Why was this feature important?", 
+						description: "During my time at Trava, there was no way to mass upload many clients, which was a feature that many users requested due to its time-consuming nature. To upload more than one client, you would have to fill out an entire field, wait for it to upload, and then repeat the process. With the implementation of this new feature, users would simply need to compile all their clients' information into one CSV file and be able to create all of those tenants with a simple click of a button."
+					},
+					{ 
+						name: "Import Process", 
+						description: "Once a tenant downloaded the template and read through the PDF instructions, they could then proceed to fill out the CSV file with their client names, domains, emails, etc. When the file was initially uploaded, an initial validation check would be run to ensure all entries would append to the proper type once the creation process was undergone. For example, the NAICS code could only be specific values and would not accept any unknown numbers. To fix this, I implemented an error handling system that would display errors indicating what was missing/incorrect and on which line in the CSV file. \nOnce the CSV file was validated, the tenant could then submit the collection of client data entries to our API. During this secondary check, it would check to see if any of the submitted clients already existed and would also check if any entries present in the CSV were different from what we had on file. If both of these were true, it would return that client to the \"Updated Clients\" section. All other clients would be returned as \"New Clients\" as there was no existing client for those entries. \nThese two data fields would be returned and put into two tables. At this point, the user could review all the clients that they submitted in an easy-to-understand format to ensure that each of their entries was correct. Once they were happy with these results, they could then submit the clients to be created/updated, and they would appear in the \"Clients\" section of the web app."
+					},
+					]}
 				/>
             <ProjectCard 
 				project_name="Spotify Current Daylist" 
