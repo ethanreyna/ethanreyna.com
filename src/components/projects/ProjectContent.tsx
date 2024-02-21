@@ -117,11 +117,6 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
                             </div>
                         </>
                     )}
-                    {isModalOpen && (
-                        <ModalContent onClose={handleCloseModal} imageLink={images[selectedImageIndex].largeUrl}>
-                            <img src={images[selectedImageIndex].largeUrl} height='100%' width='100%' alt={`Project Image ${selectedImageIndex}`} />
-                        </ModalContent>
-                    )}
                 </>
                 )}
                 {sections && sections.map((section, index) => ( 
@@ -162,6 +157,11 @@ const ProjectContent: React.FC<ProjectProps> = ({ project_name, company, descrip
                     </>
                 )}
                 </Scrollbar>
+                {images && isModalOpen && (
+                        <ModalContent onClose={handleCloseModal} imageLink={images[selectedImageIndex].largeUrl}>
+                            <img src={images[selectedImageIndex].largeUrl} height='100%' width='100%' alt={`Project Image ${selectedImageIndex}`} />
+                        </ModalContent>
+                )}
             </motion.div>
         )}
         </motion.div>
