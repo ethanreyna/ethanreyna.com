@@ -5,7 +5,6 @@ import { Icon } from "./ui";
 const links = [
   { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
 

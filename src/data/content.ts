@@ -57,7 +57,7 @@ export const caseStudies: CaseStudy[] = [
     product: "Mailtech",
     role: "Software Engineer",
     period: "2025 to now",
-    accent: "#f5b544",
+    accent: "#a78bfa",
     blurb:
       "Mailtech is a platform for running high-volume direct mail programs. I own large parts of its Next.js/React frontend, from campaign setup to the visual mail designer to audience ordering.",
     features: [
@@ -301,48 +301,6 @@ export const education = {
   degree: "B.S. Computer Science",
   year: "2022",
 };
-
-export type Project = {
-  name: string;
-  tagline: string;
-  description: string;
-  stack: string[];
-  url?: string;
-  repo?: string;
-};
-
-export const projects: Project[] = [
-  {
-    name: "Commander DB",
-    tagline: "Magic: The Gathering collection and deck builder",
-    description:
-      "Imports collections from pasted lists, CSVs from a dozen apps, or a shared Google Sheet. Photograph cards and Workers AI reads the names, matches them on Scryfall, and checks them against what you own. The deck builder covers curve, color pips, legality, and missing cards.",
-    stack: ["React 19", "Vite", "Cloudflare Workers", "D1", "Workers AI"],
-    url: "https://mtg.elthan.net",
-  },
-  {
-    name: "Orgrimm Tracker",
-    tagline: "A community site for a roleplay guild",
-    description:
-      "A public noticeboard and price list backed by a members-only tracker. Everything on the board is editable from the guild database, and open boards poll for changes, so a price update shows up everywhere within about 15 seconds.",
-    stack: ["React 19", "Vite", "Cloudflare Workers", "D1"],
-    url: "https://orgrimm-tracker.elthan.net",
-  },
-  {
-    name: "Personal Search",
-    tagline: "A listing aggregator with scoring and triage",
-    description:
-      "A scheduled Worker pulls listings from several public APIs, normalizes and dedupes them, and scores each one against per-account criteria. A React dashboard is for browsing, filtering, and triage. Accounts are invite-only.",
-    stack: ["Hono", "Cloudflare Workers", "D1", "Cron Triggers", "React"],
-  },
-  {
-    name: "Guide Tracker",
-    tagline: "Step-by-step game guide follower",
-    description:
-      "Parses guide files into structured steps and tracks progress as you play. The same TypeScript parser runs in a seed script and in the browser for pasted imports.",
-    stack: ["Hono", "Cloudflare Workers", "D1", "React", "pnpm workspaces"],
-  },
-];
 
 export const skills = [
   {

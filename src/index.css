@@ -6,32 +6,32 @@
 
 /* Color tokens. Dark is the default; .light on <html> swaps them. */
 :root {
-  --bg: #0c0d10;
-  --bg-raised: #13151a;
-  --bg-sunken: #090a0c;
-  --line: #23262e;
-  --line-strong: #343844;
+  --bg: #09090b;
+  --bg-raised: #121116;
+  --bg-sunken: #060608;
+  --line: #24222b;
+  --line-strong: #36333f;
   --fg: #ecedf0;
   --fg-muted: #9a9fac;
   --fg-faint: #6b7080;
-  --accent: #f5b544;
-  --accent-fg: #1a1204;
-  --glow: rgb(245 181 68 / 0.14);
+  --accent: #a78bfa;
+  --accent-fg: #13072b;
+  --glow: rgb(139 92 246 / 0.2);
   color-scheme: dark;
 }
 
 :root.light {
-  --bg: #f7f6f2;
+  --bg: #f7f7f9;
   --bg-raised: #ffffff;
-  --bg-sunken: #eeece6;
-  --line: #e2dfd6;
-  --line-strong: #cdc9bd;
+  --bg-sunken: #eeedf2;
+  --line: #e4e2ea;
+  --line-strong: #cfccd8;
   --fg: #16171b;
   --fg-muted: #555a66;
   --fg-faint: #80858f;
-  --accent: #b8760b;
+  --accent: #7c3aed;
   --accent-fg: #ffffff;
-  --glow: rgb(184 118 11 / 0.12);
+  --glow: rgb(124 58 237 / 0.12);
   color-scheme: light;
 }
 

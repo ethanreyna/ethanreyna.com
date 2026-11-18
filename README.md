@@ -13,7 +13,7 @@ npm run preview   # serve the build locally
 
 ## Editing content
 
-All copy, links, stats, jobs, projects, and screenshot captions live in
+All copy, links, stats, jobs, and screenshot captions live in
 [`src/data/content.ts`](src/data/content.ts). Components in `src/components/` only render that data.
 
 ## Adding screenshots
