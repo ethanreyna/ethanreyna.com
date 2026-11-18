@@ -11,12 +11,12 @@ export default function Contact() {
       />
       <div className="mx-auto max-w-6xl px-4 py-24 text-center sm:px-6 sm:py-32">
         <Reveal>
-          <p className="font-mono text-xs tracking-widest text-accent uppercase">contact</p>
+          <p className="font-mono text-xs tracking-widest text-accent uppercase">Contact</p>
           <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-            ok that's the whole site. say hi?
+            Want to talk?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-pretty text-muted">
-            Hiring? Got a weird frontend problem? Want to tell me the purple is too much? My inbox is open.
+            I'm always happy to hear about frontend roles or interesting problems. Email is the best way to reach me.
           </p>
           <a
             href={`mailto:${profile.email}`}
@@ -41,7 +41,7 @@ export default function Contact() {
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-faint sm:px-6">
           <p>© {new Date().getFullYear()} {profile.name}</p>
-          <p>Built with React, TypeScript, Tailwind, and a normal amount of purple.</p>
+          <p>Built with React, TypeScript, and Tailwind.</p>
         </div>
       </footer>
     </>

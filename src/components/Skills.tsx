@@ -4,7 +4,7 @@ import { Reveal, Section } from "./ui";
 export default function Skills() {
   return (
     <div className="border-t border-line">
-      <Section id="skills" eyebrow="toolbox" title="stuff i know how to use">
+      <Section id="skills" eyebrow="Skills" title="What I work with">
         <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
           {skills.map((g, i) => (
             <Reveal key={g.group} delay={i * 80} className="bg-bg p-6">

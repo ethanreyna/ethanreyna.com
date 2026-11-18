@@ -10,18 +10,18 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/ethan-reyna-1086a314b/",
   github: "https://github.com/ethanreyna",
   resume: "/Ethan-Reyna-Resume.pdf",
-  greeting: "howdy! i'm ethan :)",
-  headline: "i build the gnarly parts of web apps.",
+  greeting: "Hi, I'm Ethan.",
+  headline: "I build web apps, usually the complicated parts.",
   intro:
-    "I'm a frontend engineer who mostly writes TypeScript, React, and Next.js. I tend to end up on the hard stuff: canvas editors, wizards with way too many steps, report generators. I also get along with designers and PMs, which helps.",
-  currently: "currently at strata, making mail software",
+    "I'm a frontend engineer, mostly working in TypeScript, React, and Next.js. I tend to end up on the harder pieces of a product, like canvas editors, long multi-step flows, and report generators, and I like working closely with design and product to get the details right.",
+  currently: "Software engineer at Strata",
 };
 
 export const stats = [
-  { value: "4+", label: "years of making buttons do things" },
-  { value: "100+", label: "PRs merged at Strata (and counting)" },
-  { value: "8,000+", label: "reports cranked out by a generator I rebuilt" },
-  { value: "5,000+", label: "tenants on an app I made work on phones" },
+  { value: "4+", label: "years building production frontends" },
+  { value: "100+", label: "pull requests merged at Strata" },
+  { value: "8,000+", label: "reports made with a generator I rebuilt" },
+  { value: "5,000+", label: "tenants using an app I made responsive" },
 ];
 
 export type Shot = {
@@ -60,12 +60,12 @@ export const caseStudies: CaseStudy[] = [
     period: "2025 to now",
     accent: "#a78bfa",
     blurb:
-      "Mailtech is software for sending a lot of physical mail. Like, a lot. I own big chunks of its Next.js/React frontend, from setting up campaigns to the mail designer to ordering audiences.",
+      "Mailtech is software for running large direct mail campaigns. I work on big parts of its Next.js/React frontend, from campaign setup to the mail designer to audience ordering.",
     features: [
       {
         title: "Campaign configuration",
         summary:
-          "I designed and built the whole frontend for setting up a campaign. It's a lot of settings in one flow, so most of the job was keeping it from feeling like doing your taxes.",
+          "I designed and built the whole frontend for setting up a campaign. There are a lot of settings in one flow, so much of the work was keeping it easy to follow.",
         points: [
           "Mailer selection, variable mapping, and recipient setup",
           "Postage, webhooks, budget, and suppression settings",
@@ -77,7 +77,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Visual mail designer",
         summary:
-          "A canvas editor for laying out real, paper mail (state lives in RxDB). I added a bunch of the stuff you expect from a design tool and get mad about when it's missing.",
+          "A canvas editor for laying out physical mail, with its state stored in RxDB. I added many of the editing features people expect from a design tool.",
         points: [
           "Layer copy/paste and right-click context menus",
           "Undo/history that holds up across complex edits",
@@ -95,7 +95,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Data Requests: audience ordering",
         summary:
-          "A brand new workflow that was mine start to finish. Draw on a map, stack up include/exclude rules, and watch the household count update live.",
+          "A new workflow I owned from start to finish. Users draw on a map, add include and exclude rules, and see the household count update as they go.",
         points: [
           "Mapbox geo targeting",
           "Trait-based include/exclude groups and suppression list upload",
@@ -113,7 +113,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Campaign operations",
         summary:
-          "The screens the team actually lives in day to day: what's running, how it's doing, and what broke.",
+          "The screens the team uses every day to see what's running, how it's performing, and what needs attention.",
         points: [
           "Activity logging and a performance overview",
           "Error recovery, plus archive and recover actions",
@@ -140,7 +140,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Mailtech Assistant",
         summary:
-          "A little chat panel where you can ask about your campaigns, or just tell it where you want to go and it takes you there.",
+          "A chat panel where users can ask about their campaigns or tell it where they want to go in the app.",
         points: [
           "Suggested prompts for common questions and navigation",
           "Text and voice input with attachments",
@@ -165,12 +165,12 @@ export const caseStudies: CaseStudy[] = [
     period: "2022 to 2024",
     accent: "#5cc8b4",
     blurb:
-      "Trava helps MSPs and businesses size up their cyber risk. I led feature work on the TypeScript/React web app, mostly reporting and client management.",
+      "Trava helps MSPs and businesses understand their cyber risk. I led feature work on its TypeScript/React web app, mostly reporting and client management.",
     features: [
       {
         title: "Reports section and multi-template generator",
         summary:
-          "The old generator could only make one kind of document. I rebuilt it so it could take any template and fill it with the right data, then built the Reports section around it. It's cranked out 8,000+ reports in production.",
+          "The old generator could only make one kind of document. I rebuilt it to work with any template and fill in the right data, then built the Reports section around it. It has generated more than 8,000 reports in production.",
         points: [
           "Template picker with a description of what each report needs",
           "Step-by-step wizard: client, assessments, controls, previous report, options",
@@ -191,7 +191,7 @@ export const caseStudies: CaseStudy[] = [
           {
             src: "/work/trava/wizard-1-client.webp",
             alt: "Wizard step 1, a paginated client table with radio selection",
-            caption: "Step 1: pick the client out of 1,700+. Yes, it paginates.",
+            caption: "Step 1: pick the client out of 1,700+.",
           },
           {
             src: "/work/trava/wizard-2-assessments.webp",
@@ -212,14 +212,14 @@ export const caseStudies: CaseStudy[] = [
             src: "/work/trava/reports-download.webp",
             fit: "contain",
             alt: "Download menu offering PDF and DOCX",
-            caption: "PDF or DOCX, dealer's choice.",
+            caption: "Every report downloads as PDF or DOCX.",
           },
         ],
       },
       {
         title: "Bulk client import via CSV",
         summary:
-          "Adding clients used to be one at a time, which was exactly as fun as it sounds. Now a tenant can drop in a CSV and add or update up to 200 at once.",
+          "Clients used to be added one at a time. With this feature, a tenant can upload a CSV and add or update up to 200 clients at once.",
         points: [
           "Drag-and-drop upload with a downloadable template",
           "A review step that splits new clients from updated ones before anything is saved",
@@ -281,7 +281,7 @@ export const experience: Job[] = [
     points: [
       "Built features and custom solutions in Apptitude, a platform for managing complex legal processes, fitted to each client's environment.",
       "Fixed client-reported bugs quickly to keep downtime low.",
-      "Was handling support on my own within a month. They planned for three.",
+      "Was handling support on my own within a month, when the plan was three.",
     ],
   },
   {
@@ -292,7 +292,7 @@ export const experience: Job[] = [
       "Led feature development on a TypeScript/React web app.",
       "Rebuilt the report generator to support multiple templates; it has produced 8,000+ reports.",
       "Built CSV client import, letting tenants add up to 200 clients at once.",
-      "Made the app responsive and easier to use for 5,000+ tenants, with no designer, just vibes and Figma.",
+      "Made the app responsive and easier to use for 5,000+ tenants, without a dedicated designer.",
     ],
   },
 ];

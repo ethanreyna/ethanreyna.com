@@ -31,10 +31,10 @@ export default function Hero() {
         <Reveal delay={240}>
           <div className="mt-9 flex flex-wrap gap-3">
             <ButtonLink href="#work">
-              see the stuff I built <Icon.ArrowRight width={16} height={16} />
+              See my work <Icon.ArrowRight width={16} height={16} />
             </ButtonLink>
             <ButtonLink href={`mailto:${profile.email}`} variant="ghost">
-              <Icon.Mail width={16} height={16} /> say hi
+              <Icon.Mail width={16} height={16} /> Email me
             </ButtonLink>
           </div>
         </Reveal>
