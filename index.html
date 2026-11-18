@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethan Reyna · Frontend Engineer</title>
+    <meta name="description" content="Ethan Reyna is a frontend software engineer building canvas editors, multi-step workflows, and reporting tools with React, Next.js, and TypeScript." />
+    <meta property="og:title" content="Ethan Reyna · Frontend Engineer" />
+    <meta property="og:description" content="Canvas editors, multi-step workflows, and reporting tools built with React, Next.js, and TypeScript." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ethanreyna.com" />
+    <meta name="theme-color" content="#0c0d10" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      // Set the theme before first paint to avoid a flash.
+      try {
+        const t = localStorage.getItem("theme");
+        if (t === "light" || (!t && matchMedia("(prefers-color-scheme: light)").matches))
+          document.documentElement.classList.add("light");
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

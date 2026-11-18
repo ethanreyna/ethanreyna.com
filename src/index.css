@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant light (&:where(.light, .light *));
+
+/* Color tokens. Dark is the default; .light on <html> swaps them. */
+:root {
+  --bg: #0c0d10;
+  --bg-raised: #13151a;
+  --bg-sunken: #090a0c;
+  --line: #23262e;
+  --line-strong: #343844;
+  --fg: #ecedf0;
+  --fg-muted: #9a9fac;
+  --fg-faint: #6b7080;
+  --accent: #f5b544;
+  --accent-fg: #1a1204;
+  --glow: rgb(245 181 68 / 0.14);
+  color-scheme: dark;
+}
+
+:root.light {
+  --bg: #f7f6f2;
+  --bg-raised: #ffffff;
+  --bg-sunken: #eeece6;
+  --line: #e2dfd6;
+  --line-strong: #cdc9bd;
+  --fg: #16171b;
+  --fg-muted: #555a66;
+  --fg-faint: #80858f;
+  --accent: #b8760b;
+  --accent-fg: #ffffff;
+  --glow: rgb(184 118 11 / 0.12);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-sunken: var(--bg-sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-faint: var(--fg-faint);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+/* Faint grid behind the hero. */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 75%);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.8);
+  backdrop-filter: blur(6px);
+}
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
