@@ -10,8 +10,8 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/ethan-reyna-1086a314b/",
   github: "https://github.com/ethanreyna",
   resume: "/Ethan-Reyna-Resume.pdf",
-  greeting: "Hi, I'm Ethan.",
-  headline: "I build web apps, usually the complicated parts.",
+  greeting: "Hi, I'm Ethan",
+  headline: "I build web apps and stuff.",
   intro:
     "I'm a frontend engineer, mostly working in TypeScript, React, and Next.js. I tend to end up on the harder pieces of a product, like canvas editors, long multi-step flows, and report generators, and I like working closely with design and product to get the details right.",
   currently: "Software engineer at Strata",
