@@ -84,7 +84,7 @@ function Study({ study }: { study: CaseStudy }) {
           <p className="relative mt-4 max-w-3xl text-pretty text-muted">{study.blurb}</p>
           {withShots.length === 0 && (
             <p className="relative mt-5 inline-flex items-center gap-2 rounded-full border border-line-strong px-3 py-1 text-xs text-faint">
-              <Icon.Image width={13} height={13} /> Screenshots coming soon
+              <Icon.Image width={13} height={13} /> screenshots coming soon, probably
             </p>
           )}
         </div>
@@ -113,9 +113,9 @@ export default function Work() {
   return (
     <Section
       id="work"
-      eyebrow="Selected work"
-      title="Production features I designed, built, and shipped"
-      intro="Most of my work happens behind logins, so this is a walkthrough of the bigger pieces, with screenshots where I have them."
+      eyebrow="work"
+      title="stuff i built that real people use"
+      intro="Most of this lives behind a login, so here's the screenshot tour. Other people's names are blurred bc privacy :P"
     >
       <div className="space-y-28 sm:space-y-36">
         {caseStudies.map((s) => (

@@ -21,7 +21,7 @@ export default function Hero() {
         </Reveal>
         <Reveal delay={80}>
           <h1 className="mt-6 max-w-4xl text-5xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-7xl">
-            {profile.name}
+            {profile.greeting}
             <span className="block text-muted">{profile.headline}</span>
           </h1>
         </Reveal>
@@ -31,10 +31,10 @@ export default function Hero() {
         <Reveal delay={240}>
           <div className="mt-9 flex flex-wrap gap-3">
             <ButtonLink href="#work">
-              See my work <Icon.ArrowRight width={16} height={16} />
+              see the stuff I built <Icon.ArrowRight width={16} height={16} />
             </ButtonLink>
             <ButtonLink href={`mailto:${profile.email}`} variant="ghost">
-              <Icon.Mail width={16} height={16} /> Get in touch
+              <Icon.Mail width={16} height={16} /> say hi
             </ButtonLink>
           </div>
         </Reveal>

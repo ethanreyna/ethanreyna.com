@@ -4,7 +4,7 @@ import { Reveal, Section } from "./ui";
 export default function Experience() {
   return (
     <div className="border-y border-line bg-sunken/50">
-      <Section id="experience" eyebrow="Experience" title="Where I've worked">
+      <Section id="experience" eyebrow="experience" title="places that have paid me">
         <ol className="relative space-y-12 border-l border-line pl-6 sm:pl-10">
           {experience.map((job, i) => (
             <li key={job.company} className="relative">
