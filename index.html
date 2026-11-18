@@ -5,23 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ethan Reyna · Frontend Engineer</title>
     <meta name="description" content="I'm Ethan Reyna, a frontend engineer. Here are some of the things I've built at Strata and Trava." />
-    <meta property="og:title" content="Ethan Reyna · Frontend Engineer" />
-    <meta property="og:description" content="Some of the things I've built at Strata and Trava." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ethanreyna.com" />
+    <link rel="canonical" href="https://ethanreyna.com/" />
     <meta name="theme-color" content="#09090b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <script>
-      // Set the theme before first paint to avoid a flash.
-      try {
-        const t = localStorage.getItem("theme");
-        if (t === "light" || (!t && matchMedia("(prefers-color-scheme: light)").matches))
-          document.documentElement.classList.add("light");
-      } catch {}
-    </script>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ethanreyna.com/" />
+    <meta property="og:title" content="Ethan Reyna · Frontend Engineer" />
+    <meta property="og:description" content="Some of the things I've built at Strata and Trava." />
+    <meta property="og:image" content="https://ethanreyna.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ethan Reyna, frontend engineer" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script src="/theme.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width: 40rem; margin: 4rem auto; padding: 0 1rem; font-family: system-ui, sans-serif; line-height: 1.6; color: #ecedf0">
+        <h1>Ethan Reyna</h1>
+        <p>Frontend engineer. This site needs JavaScript to show its screenshots and case studies.</p>
+        <p>
+          <a style="color: #a78bfa" href="mailto:dev@ethanreyna.com">dev@ethanreyna.com</a> ·
+          <a style="color: #a78bfa" href="/Ethan-Reyna-Resume.pdf">Resume (PDF)</a>
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

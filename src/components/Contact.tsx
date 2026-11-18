@@ -3,7 +3,6 @@ import { ButtonLink, Icon, Reveal } from "./ui";
 
 export default function Contact() {
   return (
-    <>
     <section id="contact" className="relative isolate overflow-hidden border-t border-line">
       <div
         className="pointer-events-none absolute -bottom-48 left-1/2 -z-10 h-[420px] w-[760px] -translate-x-1/2 rounded-full blur-3xl"
@@ -38,12 +37,16 @@ export default function Contact() {
         </Reveal>
       </div>
     </section>
-      <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-faint sm:px-6">
-          <p>© {new Date().getFullYear()} {profile.name}</p>
-          <p>Built with React, TypeScript, and Tailwind.</p>
-        </div>
-      </footer>
-    </>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-faint sm:px-6">
+        <p>© {new Date().getFullYear()} {profile.name}</p>
+        <p>Built with React, TypeScript, and Tailwind.</p>
+      </div>
+    </footer>
   );
 }

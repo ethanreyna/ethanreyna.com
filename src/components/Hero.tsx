@@ -42,10 +42,9 @@ export default function Hero() {
         <Reveal delay={320}>
           <dl className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">
             {stats.map((s) => (
-              <div key={s.label} className="bg-bg p-5 sm:p-6">
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="text-3xl font-semibold tracking-tight sm:text-4xl">{s.value}</dd>
-                <dd className="mt-1.5 text-sm text-pretty text-muted">{s.label}</dd>
+              <div key={s.label} className="flex flex-col bg-bg p-5 sm:p-6">
+                <dt className="mt-1.5 text-sm text-pretty text-muted">{s.label}</dt>
+                <dd className="order-first text-3xl font-semibold tracking-tight sm:text-4xl">{s.value}</dd>
               </div>
             ))}
           </dl>

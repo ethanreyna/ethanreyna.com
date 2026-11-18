@@ -21,7 +21,7 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -10% 0px" },
+      { rootMargin: "0px 0px -40px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -134,7 +134,7 @@ export function ButtonLink({
 }) {
   const styles =
     variant === "primary"
-      ? "bg-accent text-accent-fg hover:brightness-110"
+      ? "border border-transparent bg-accent text-accent-fg hover:brightness-110"
       : "border border-line-strong text-fg hover:border-fg/40 hover:bg-raised";
   return (
     <a
@@ -143,6 +143,7 @@ export function ButtonLink({
       className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${styles}`}
     >
       {children}
+      {external && <span className="sr-only">(opens in a new tab)</span>}
     </a>
   );
 }

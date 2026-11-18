@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
     product: "Mailtech",
     role: "Software Engineer",
     period: "2025 to now",
-    accent: "#a78bfa",
+    accent: "var(--accent)",
     blurb:
       "Mailtech is software for running large direct mail campaigns. I work on big parts of its Next.js/React frontend, from campaign setup to the mail designer to audience ordering.",
     features: [

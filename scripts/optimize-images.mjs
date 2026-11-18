@@ -1,5 +1,6 @@
 // Converts everything in screenshots/<project>/ into resized WebP files at
-// public/work/<project>/<name>.webp. Run with `npm run images`.
+// public/work/<project>/<name>.webp, plus .md.webp (1000px, for phones via srcset)
+// and .thumb.webp (400px, for the gallery strip). Run with `npm run images`.
 // Originals stay out of git (see .gitignore); only the WebP output is committed.
 import { readdir, mkdir } from "node:fs/promises";
 import path from "node:path";
@@ -8,6 +9,7 @@ import sharp from "sharp";
 const SRC = "screenshots";
 const OUT = "public/work";
 const MAX_WIDTH = 2000;
+const MEDIUM_WIDTH = 1000;
 const THUMB_WIDTH = 400;
 
 // Regions to blur before export, in original-image pixels.
@@ -54,6 +56,10 @@ for (const project of await readdir(SRC, { withFileTypes: true })) {
       .resize({ width: MAX_WIDTH, withoutEnlargement: true })
       .webp({ quality: 82 })
       .toFile(out);
+    await sharp(buf)
+      .resize({ width: MEDIUM_WIDTH, withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toFile(out.replace(/\.webp$/, ".md.webp"));
     // Small copy for the gallery thumbnail strip.
     await sharp(buf)
       .resize({ width: THUMB_WIDTH, withoutEnlargement: true })

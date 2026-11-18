@@ -3,9 +3,17 @@ import Hero from "./components/Hero";
 import Work from "./components/Work";
 import Experience from "./components/Experience";
 import Skills from "./components/Skills";
-import Contact from "./components/Contact";
+import Contact, { Footer } from "./components/Contact";
+import { useEffect } from "react";
 
 export default function App() {
+  // The page renders client-side, so the browser can't jump to a #section on load by itself.
+  useEffect(() => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return;
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
+  }, []);
+
   return (
     <>
       <a
@@ -22,6 +30,7 @@ export default function App() {
         <Skills />
         <Contact />
       </main>
+      <Footer />
     </>
   );
 }

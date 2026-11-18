@@ -43,10 +43,7 @@ function FeatureCard({ feature, study, index }: { feature: Feature; study: CaseS
   return (
     <Reveal delay={(index % 2) * 80} className="h-full">
       <div className="flex h-full flex-col rounded-2xl border border-line bg-raised/50 p-6">
-        <p className="font-mono text-xs" style={{ color: study.accent }}>
-          {String(index + 1).padStart(2, "0")}
-        </p>
-        <h4 className="mt-2 text-lg font-semibold tracking-tight">{feature.title}</h4>
+        <h4 className="text-lg font-semibold tracking-tight">{feature.title}</h4>
         <p className="mt-2 text-sm text-pretty text-muted">{feature.summary}</p>
         <div className="mt-5 flex-1">
           <Points points={feature.points} accent={study.accent} />
@@ -99,7 +96,7 @@ function Study({ study }: { study: CaseStudy }) {
       )}
 
       {withoutShots.length > 0 && (
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <div className={`mt-14 grid gap-4 sm:mt-16 ${withoutShots.length > 1 ? "md:grid-cols-2" : ""}`}>
           {withoutShots.map((f, i) => (
             <FeatureCard key={f.title} feature={f} study={study} index={i} />
           ))}
